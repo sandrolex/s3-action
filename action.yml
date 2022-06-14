@@ -1,0 +1,33 @@
+name: Interact with s3
+author: InfoSec Team
+description: >
+  bla bla
+inputs:
+  bucket-name: 
+    description: |
+      bla bla
+    required: true
+  region:
+    description: |
+      The ECR region
+    required: false
+    default: eu-west-3
+  account:
+    description: |
+      the AWS account
+    required: true
+    
+runs:
+  using: composite
+  steps: 
+    - name: Checkout
+      uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+
+    - name: Get credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::${{ input.ACCOUNT }}:role/test_role
+        aws-region: ${{ inputs.region }}
+      
+    - name: Copy file from Bucket
+      run: aws s3 cp s3://${{ inputs.bucket-name }}/filler.txt . 
