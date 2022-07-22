@@ -1,5 +1,5 @@
 name: Interact with s3
-author: InfoSec Team
+author: Sandro Lex
 description: >
   bla bla
 inputs:
@@ -9,7 +9,7 @@ inputs:
     required: true
   region:
     description: |
-      The ECR region
+      S3 region
     required: false
     default: eu-west-3
   account:
@@ -26,7 +26,7 @@ runs:
     - name: Get credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::${{ input.ACCOUNT }}:role/test_role
+        role-to-assume: arn:aws:iam::${{ input.ACCOUNT }}:role/test_role-read
         aws-region: ${{ inputs.region }}
       
     - name: Copy file from Bucket
