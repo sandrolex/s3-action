@@ -23,11 +23,11 @@ runs:
     - name: Checkout
       uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
 
-    - name: Get credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: arn:aws:iam::${{ inputs.account }}:role/test_role-read
-        aws-region: ${{ inputs.region }}
+    # - name: Get credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     role-to-assume: arn:aws:iam::${{ inputs.account }}:role/test_role-read
+    #     aws-region: ${{ inputs.region }}
       
     - name: Copy file from Bucket
       shell: bash
